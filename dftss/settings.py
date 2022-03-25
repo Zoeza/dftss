@@ -115,9 +115,15 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-STATIC_URL = 'static/'
-STATIC_ROOT = "/dftss/site/public/static"
 
+STATIC_ROOT = ""
+STATIC_URL = '/static/'
+STATICFILES_DIRS = ('/Users/macbook/django-projects/dftss/site/public/static'),
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
 
 
 MEDIA_URL = 'media/'
@@ -128,3 +134,13 @@ MEDIA_ROOT = "/dftss/site/public/media"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), 'templates'),)
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_PASSWORD = 'megmvslqdvssxbkk'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'zahrahabitaa@gmail.com'
+APPLICATION_EMAIL = 'z_habita@enst.dz>'
+EMAIL_USE_TLS = True
