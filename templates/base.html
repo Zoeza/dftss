@@ -41,6 +41,8 @@
 </head>
 
 <body id="top">
+    {% for p in profile %}
+
 
     <!-- header
     ================================================== -->
@@ -57,15 +59,16 @@
             <a href="#0" class="header-nav__close" title="close"><span>Close</span></a>
 
             <div class="header-nav__content">
+
                 <h3>Navigation</h3>
 
                 <ul class="header-nav__list">
-                    <li class="current"><a class="smoothscroll"  href="#home" title="home">Home</a></li>
-                    <li><a class="smoothscroll"  href="#about" title="about">About</a></li>
-                    <li><a class="smoothscroll"  href="#services" title="services">Services</a></li>
-                    <li><a class="smoothscroll"  href="#works" title="works">Works</a></li>
-                    <li><a class="smoothscroll"  href="#clients" title="clients">Clients</a></li>
-                    <li><a class="smoothscroll"  href="#contact" title="contact">Contact</a></li>
+                    <li class="current"><a class="smoothscroll"  href="#home" title="home">{{ p.home}} </a></li>
+                    <li><a class="smoothscroll"  href="#about" title="about">{{ p.about}}</a></li>
+                    <li><a class="smoothscroll"  href="#services" title="services">{{ p.services}}</a></li>
+                    <li><a class="smoothscroll"  href="#works" title="works">{{ p.works}}</a></li>
+                    <li><a class="smoothscroll"  href="#clients" title="clients">{{ p.clients}}</a></li>
+                    <li><a class="smoothscroll"  href="#contact" title="contact">{{ p.contact }}</a></li>
                 </ul>
 
 
@@ -85,6 +88,7 @@
             </div> <!-- end header-nav__content -->
 
         </nav>  <!-- end header-nav -->
+
 
         <a class="header-menu-toggle" href="#0">
             <span class="header-menu-text">Menu</span>
@@ -106,26 +110,14 @@
             <div class="row home-content__main">
 
 
-
-
-
-                       <h1>DFT Sustainable Solutions  </h1>
+                       <h1>{{ p.intro_big_text }} </h1>
                        <div class="home-content__buttons" >
 
                             <a href="#about" class="smoothscroll btn btn--stroke">
-                                More About Us
+                                {{ p.intro_button }}
                             </a>
 
                         </div>
-
-
-
-
-
-
-
-
-
 
             </div>
 
@@ -164,15 +156,14 @@
         <div class="row section-header has-bottom-sep" data-aos="fade-up">
             <div class="col-full">
                 <h3 class="subhead subhead--dark">Hello There</h3>
-                <h1 class="display-1 display-1--light">We Are DFTSS</h1>
+                <h1 class="display-1 display-1--light">{{ p.about_title }}</h1>
             </div>
         </div> <!-- end section-header -->
 
         <div class="row about-desc" data-aos="fade-up">
             <div class="col-full">
                 <h2>
-                    <p>We are a collective of professionals that have been integrated
-                    into a unified progressive thinking solution provider.</P>
+                    <p>{{ p.about_text }}</P>
 
                 </h2>
 
@@ -213,8 +204,8 @@
 
         <div class="row section-header has-bottom-sep" data-aos="fade-up">
             <div class="col-full">
-                <h3 class="subhead">What We Do</h3>
-                <h1 class="display-2">We’ve got everything you need to launch and grow your business</h1>
+                <h3 class="subhead">{{p.services_title }}</h3>
+                <h1 class="display-2">{{p.services_text }}</h1>
             </div>
         </div> <!-- end section-header -->
 
@@ -282,11 +273,13 @@
     <section id='works' class="s-works">
 
         <div class="intro-wrap">
+                {% for w in works %}
+
 
             <div class="row section-header has-bottom-sep light-sep" data-aos="fade-up">
                 <div class="col-full">
-                    <h3 class="subhead">Recent Works</h3>
-                    <h1 class="display-2 display-2--light">We love what we do, check out some of our latest works</h1>
+                    <h3 class="subhead">{{p.works_title }}</h3>
+                    <h1 class="display-2 display-2--light">{{p.works_text }}</h1>
                 </div>
             </div> <!-- end section-header -->
 
@@ -298,6 +291,7 @@
 
                     <div class="masonry__brick" data-aos="fade-up">
                         <div class="item-folio">
+
 
                             <div class=item-folio__thumb">
                                 <a href=" {% static '/website/images/portfolio/gallery/img6.jpg'%}" class="thumb-link" title="Drones" data-size="600x600">
@@ -420,6 +414,8 @@
                                 <p></p>
 
                             </div>
+                        {% endfor %}
+
 
 
 
@@ -449,9 +445,8 @@
 
         <div class="row section-header" data-aos="fade-up">
             <div class="col-full">
-                <h3 class="subhead">Our Clients</h3>
-                <h1 class="display-2">DFT Sustainable Solutions has been honored to
-                partner up with these clients</h1>
+                <h3 class="subhead">{{p.clients_title }}</h3>
+                <h1 class="display-2"> {{p.clients_text }}</h1>
             </div>
         </div> <!-- end section-header -->
 
@@ -585,8 +580,8 @@
 
         <div class="row section-header" data-aos="fade-up">
             <div class="col-full">
-                <h3 class="subhead">Contact Us</h3>
-                <h1 class="display-2 display-2--light">Reach out for a new project or just say hello</h1>
+                <h3 class="subhead">{{p.contact_title }}</h3>
+                <h1 class="display-2 display-2--light">{{p.contact_text }}</h1>
             </div>
         </div>
 
@@ -614,7 +609,7 @@
                     </div>
                     <div class="form-field">
 
-                        <button class="full-width btn--primary">Send</button>
+                        <button class="full-width btn--primary">{{p.contact_button}}</button>
                         <div class="submit-loader">
                             <div class="text-loader">Sending...</div>
                             <div class="s-loader">
@@ -646,26 +641,26 @@
                     <h3 class="h6 hide-on-fullwidth">Contact Info</h3>
 
                     <div class="cinfo">
-                        <h5>Where to Find Us</h5>
+                        <h5>{{p.address_title }}</h5>
                         <p>
-                           Masdar City , incubator building, Abu Dhabi, UAE<br>
+                           {{p.address }}<br>
 
 
                         </p>
                     </div>
 
                     <div class="cinfo">
-                        <h5>Email Us At</h5>
+                        <h5>{{p.email_title }}</h5>
                         <p>
-                           info@dftss.com<br>
+                           {{p.email_title }}<br>
 
                         </p>
                     </div>
 
                     <div class="cinfo">
-                        <h5>Call Us At</h5>
+                        <h5>{{p.phone_title }}</h5>
                         <p>
-                           Mobile: +971 50 205 8877<br>
+                           Mobile: {{p.phone}}<br>
 
                         </p>
                     </div>
@@ -689,6 +684,7 @@
         </div> <!-- end contact-content -->
 
     </section> <!-- end s-contact -->
+
 
 
     <!-- footer
@@ -727,6 +723,7 @@
 
         </div> <!-- end footer-main -->
 
+
         <div class="row footer-bottom">
 
             <div class="col-twelve">
@@ -743,7 +740,7 @@
 
     </footer> <!-- end footer -->
 
-
+    {% endfor %}
     <!-- photoswipe background
     ================================================== -->
     <div aria-hidden="true" class="pswp" role="dialog" tabindex="-1">
@@ -784,6 +781,7 @@
     </div> <!-- end photoSwipe background -->
 
 
+
     <!-- preloader
     ================================================== -->
     <div id="preloader">
@@ -804,7 +802,6 @@
     <script src="{% static '/website/js/jquery-3.2.1.min.js'%}"></script>
     <script src="{% static '/website/js/plugins.js'%}"></script>
     <script src="{% static '/website/js/main.js'%}"></script>
-
 
 
 </body>

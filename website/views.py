@@ -1,10 +1,32 @@
 from django.shortcuts import render,redirect
-from website.forms import ContactUs
+from django.http import HttpResponse,Http404
 from django.core.mail import BadHeaderError, EmailMessage
 from django.conf import settings
 
+from website.forms import ContactUs
+from .models import Profile,Work     # , SiteManager
+
 # Create your views here.
+
+
 def index(request):
+    try:
+        profile = Profile.objects.all()
+    except Profile.DoesNotExist:
+        raise Http404("Profile does not exist")
+
+    try:
+        work = Work.objects.all()
+    except Work.DoesNotExist:
+        raise Http404("Work does not exist")
+
+
+    context = {
+        'profile': profile,
+        'work': work,
+    }
+
+
     form = ContactUs(request.POST or None)
     if form.is_valid():
         subject = 'Subject:' + form.cleaned_data['subject']
@@ -18,4 +40,7 @@ def index(request):
             email_message.send()
         except BadHeaderError:
             return HttpResponse('Un en-tête non valide a été détecté.')
-    return render(request, "base.html",{})
+
+
+
+    return render(request, "base.html",context)
